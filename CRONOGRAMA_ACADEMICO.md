@@ -337,4 +337,4 @@ sghss-vidaplus/
 
 ---
 
-**🎉 Projeto alinhado com o roteiro acadêmico e pronto para as próximas fases!**
+
