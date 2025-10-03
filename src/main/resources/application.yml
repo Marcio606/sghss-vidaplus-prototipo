@@ -1,1 +1,101 @@
-spring: 
+server:
+  port: 8080
+  servlet:
+    context-path: /sghss
+
+spring:
+  application:
+    name: sghss-vidaplus
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/sghss_vidaplus?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    open-in-view: false
+    
+  jackson:
+    time-zone: America/Sao_Paulo
+    date-format: dd/MM/yyyy HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+
+# Configurações de logging
+logging:
+  level:
+    com.vidaplus.sghss: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Configurações do Swagger/OpenAPI
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+# Configurações de segurança
+sghss:
+  security:
+    jwt:
+      secret: sghss-vidaplus-secret-key-2025-marcio-moreira
+      expiration: 86400000 # 24 horas em millisegundos
+      
+# Configurações de upload de arquivos
+  upload:
+    path: ./uploads/
+    max-file-size: 10MB
+    max-request-size: 10MB
+
+# Configurações de email (opcional)
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# Configurações do sistema
+  system:
+    name: SGHSS Vida Plus
+    version: 1.0.0
+    description: Sistema de Gestão Hospitalar e de Serviços de Saúde
+    
+# Configurações de backup
+  backup:
+    enabled: true
+    schedule: "0 0 2 * * ?" # Todo dia às 2h da manhã
+    retention-days: 30
+    path: ./backups/
+
+# Configurações de monitoramento
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
