@@ -10,8 +10,8 @@ Sistema de Gestão Hospitalar e de Serviços de Saúde
 Desenvolvido por: Marcio Machado Moreira
 RU: 4543545
 
-Universidade [Nome da Universidade]
-Curso: [Nome do Curso]
+Universidade [Uninter]
+Curso: [analise e desenvolvimento de software]
 Disciplina: Projetos Multidisciplinares
 ```
 
@@ -418,7 +418,7 @@ Desenvolvido por: Marcio Machado Moreira
 RU: 4543545
 
 📧 Email: marcio606@email.com
-🔗 GitHub: https://github.com/Marcio606/sghss-vidaplus
+🔗 GitHub: https://github.com/Marcio606/sghss-vidaplus-prototipo
 🌐 Sistema: http://localhost:8080/sghss/swagger-ui.html
 
 PERGUNTAS?
