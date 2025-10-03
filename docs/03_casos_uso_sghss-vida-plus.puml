@@ -1,0 +1,21 @@
+@startuml
+' Diagrama de Casos de Uso - SGHSS Vida Plus Prototipo
+left to right direction
+actor Paciente
+actor ProfissionalSaude as Profissional
+actor Administrador
+
+Paciente -- (Cadastrar-se)
+Paciente -- (Agendar Consulta)
+Paciente -- (Acessar Prontuário)
+Paciente -- (Acessar Telemedicina)
+Profissional -- (Gerenciar Agenda)
+Profissional -- (Atualizar Prontuário)
+Profissional -- (Emitir Receita Digital)
+Administrador -- (Gerenciar Cadastros)
+Administrador -- (Gerar Relatórios)
+Administrador -- (Controlar Internações)
+Administrador -- (Gerenciar Leitos)
+Administrador -- (Gerenciar Usuários)
+
+@enduml

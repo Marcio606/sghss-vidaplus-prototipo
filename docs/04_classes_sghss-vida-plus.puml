@@ -1,0 +1,61 @@
+@startuml
+' Diagrama de Classes - SGHSS Vida Plus Prototipo
+class Paciente {
+  +Long id
+  +String nome
+  +String cpf
+  +Date dataNascimento
+  +String historicoClinico
+}
+
+class ProfissionalSaude {
+  +Long id
+  +String nome
+  +String crm
+  +String especialidade
+  +Agenda agenda
+}
+
+class Consulta {
+  +Long id
+  +Paciente paciente
+  +ProfissionalSaude profissional
+  +Date dataHora
+  +String tipo
+  +String status
+}
+
+class Prontuario {
+  +Long id
+  +Paciente paciente
+  +List<Registro> registros
+  +List<Prescricao> prescricoes
+}
+
+class Usuario {
+  +Long id
+  +String login
+  +String senha
+  +String perfil
+}
+
+class Leito {
+  +Long id
+  +String status
+  +Paciente paciente
+}
+
+class Relatorio {
+  +Long id
+  +String tipo
+  +String dados
+  +Date dataGeracao
+}
+
+Paciente "1" -- "*" Consulta : participa >
+ProfissionalSaude "1" -- "*" Consulta : realiza >
+Paciente "1" -- "1" Prontuario : possui >
+Prontuario "1" -- "*" Prescricao : contem >
+Prontuario "1" -- "*" Registro : contem >
+
+@enduml
