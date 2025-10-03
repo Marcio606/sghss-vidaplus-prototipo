@@ -142,8 +142,8 @@ echo ========================================
 echo REPOSITORIO GITHUB
 echo ========================================
 echo.
-echo 🔗 Link: https://github.com/Marcio606/sghss-vidaplus
-echo 📁 Clone: git clone https://github.com/Marcio606/sghss-vidaplus.git
+echo 🔗 Link: https://github.com/Marcio606/sghss-vidaplus\prototipo
+echo 📁 Clone: git clone https://github.com/Marcio606/sghss-vidaplus\prototipo.git
 echo.
 echo ========================================
 echo STATUS DO PROJETO
@@ -156,7 +156,3 @@ echo ✅ DOCKER: 100%% Configurado
 echo ✅ GITHUB: 100%% Pronto para upload
 echo.
 echo 🎉 PROJETO COMPLETO E FUNCIONAL!
-echo.
-echo Pressione qualquer tecla para abrir o repositorio no GitHub...
-pause >nul
-start https://github.com/Marcio606/sghss-vidaplus
