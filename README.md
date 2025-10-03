@@ -89,7 +89,7 @@ sghss-vidaplus/
 
 ### 1. Clone o Repositório
 ```bash
-git clone https://github.com/Marcio606/sghss-vidaplus.git
+git clone https://github.com/Marcio606/sghss-vidaplus\prototipo.git
 cd sghss-vidaplus
 ```
 
