@@ -35,4 +35,3 @@
 - POST /api/login
 
 ---
-Os diagramas visuais (UML) podem ser gerados em ferramentas como draw.io, Lucidchart ou PlantUML e anexados posteriormente ao documento final.
