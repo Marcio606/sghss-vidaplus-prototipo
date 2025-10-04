@@ -1,30 +1,5 @@
 package com.vidaplus.sghss.model;
 
-<<<<<<< HEAD
-import javax.persistence.*;
-
-@Entity
-public class Paciente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
-    private String cpf;
-    private String dataNascimento;
-    private String historicoClinico;
-
-    // Getters e setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
-    public String getCpf() { return cpf; }
-    public void setCpf(String cpf) { this.cpf = cpf; }
-    public String getDataNascimento() { return dataNascimento; }
-    public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
-    public String getHistoricoClinico() { return historicoClinico; }
-    public void setHistoricoClinico(String historicoClinico) { this.historicoClinico = historicoClinico; }
-=======
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -119,9 +94,6 @@ public class Paciente {
     @Column(name = "observacoes", columnDefinition = "TEXT")
     private String observacoes;
 
-    @Column(name = "ativo", nullable = false)
-    private Boolean ativo = true;
-
     @CreationTimestamp
     @Column(name = "data_cadastro", nullable = false, updatable = false)
     private LocalDateTime dataCadastro;
@@ -129,9 +101,6 @@ public class Paciente {
     @UpdateTimestamp
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
-
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Consulta> consultas;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Prontuario> prontuarios;
@@ -152,25 +121,18 @@ public class Paciente {
 
     public String getCpfFormatado() {
         if (cpf != null && cpf.length() == 11) {
-            return cpf.substring(0, 3) + "." + 
-                   cpf.substring(3, 6) + "." + 
-                   cpf.substring(6, 9) + "-" + 
-                   cpf.substring(9, 11);
+            return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
         }
         return cpf;
     }
 
     public String getTelefoneFormatado() {
         if (telefone != null && telefone.length() == 11) {
-            return "(" + telefone.substring(0, 2) + ") " + 
-                   telefone.substring(2, 7) + "-" + 
-                   telefone.substring(7, 11);
+            return "(" + telefone.substring(0, 2) + ") " + telefone.substring(2, 7) + "-" + telefone.substring(7, 11);
         } else if (telefone != null && telefone.length() == 10) {
-            return "(" + telefone.substring(0, 2) + ") " + 
-                   telefone.substring(2, 6) + "-" + 
-                   telefone.substring(6, 10);
+            return "(" + telefone.substring(0, 2) + ") " + telefone.substring(2, 6) + "-" + telefone.substring(6, 10);
         }
         return telefone;
     }
->>>>>>> 8065f719c37ca4ef855eaa2d4cbbfd9201d911fc
+
 }
