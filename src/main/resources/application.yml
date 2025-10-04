@@ -54,6 +54,9 @@ sghss:
     jwt:
       secret: sghss-vidaplus-secret-key-2025-marcio-moreira
       expiration: 86400000 # 24 horas em millisegundos
+
+external-api:
+  base-url: https://httpbin.org
       
 # Configurações de upload de arquivos
   upload:
