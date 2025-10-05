@@ -165,7 +165,6 @@ public class Consulta {
     }
 
 }
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "paciente_id", nullable = false)
     @NotNull(message = "Paciente é obrigatório")
     private Paciente paciente;
