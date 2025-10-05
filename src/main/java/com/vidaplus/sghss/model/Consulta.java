@@ -410,9 +410,9 @@ public class Consulta {
     }
 
     public boolean estaPaga() {
-        return valorPago != null && 
-               valorConsulta != null && 
+        return valorPago != null &&
+               valorConsulta != null &&
                valorPago >= valorConsulta;
     }
->>>>>>> 8065f719c37ca4ef855eaa2d4cbbfd9201d911fc
+
 }
