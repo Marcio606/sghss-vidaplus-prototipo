@@ -44,6 +44,11 @@ buildNumber.properties
 *.swp
 *.swo
 *~
+.project
+.classpath
+.settings/
+bin/
+.metadata/
 
 # OS
 .DS_Store
@@ -77,3 +82,13 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+
+# Node modules (if frontend uses npm)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts
+dist/
+build/

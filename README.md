@@ -89,8 +89,8 @@ sghss-vidaplus/
 
 ### 1. Clone o Repositório
 ```bash
-git clone https://github.com/Marcio606/sghss-vidaplus\prototipo.git
-cd sghss-vidaplus
+git clone https://github.com/Marcio606/sghss-vidaplus-prototipo.git
+cd sghss-vidaplus-prototipo
 ```
 
 ### 2. Configure o Banco de Dados

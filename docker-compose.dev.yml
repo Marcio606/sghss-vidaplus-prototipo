@@ -1,30 +1,48 @@
 version: '3.8'
+
 services:
-  db:
+  mysql:
     image: mysql:8.0
+    container_name: sghss-mysql-dev
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: sghss_vidaplus
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: sghss_user
+      MYSQL_PASSWORD: sghss_password
     ports:
       - "3306:3306"
+    volumes:
+      - mysql_dev_data:/var/lib/mysql
+    networks:
+      - sghss-network
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   app:
     build: .
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/sghss_vidaplus?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    container_name: sghss-app-dev
     ports:
       - "8080:8080"
-    command: mvn -Dspring-boot.run.arguments=--spring.profiles.active=default spring-boot:run
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/sghss_vidaplus?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: sghss_user
+      SPRING_DATASOURCE_PASSWORD: sghss_password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: false
+      SPRING_PROFILES_ACTIVE: default
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - sghss-network
+    restart: unless-stopped
+
+volumes:
+  mysql_dev_data:
+
+networks:
+  sghss-network:
+    driver: bridge
