@@ -5,8 +5,8 @@
 ### **1. CAPA E IDENTIFICAÇÃO**
 
 ```
-UNIVERSIDADE [NOME DA UNIVERSIDADE]
-CURSO DE [NOME DO CURSO]
+UNIVERSIDADE [UNINTER]
+CURSO DE [ADS]
 DISCIPLINA: PROJETOS MULTIDISCIPLINARES
 
 PROJETO SGHSS VIDA PLUS
@@ -16,14 +16,8 @@ Desenvolvido por:
 MARCIO MACHADO MOREIRA
 RU: 4543545
 
-Professor: [NOME DO PROFESSOR]
-Período: [PERÍODO]
-Data: [DATA]
-```
-
----
-
-### **2. SUMÁRIO**
+Professor: [Prof. Winston Sen Lun Fung, Me]
+2. SUMÁRIO**
 
 ```
 1. INTRODUÇÃO ......................................................... 3
@@ -49,13 +43,13 @@ Data: [DATA]
    6.3 Melhorias Futuras .............................................. 32
 7. REFERÊNCIAS ......................................................... 33
 8. ANEXOS .............................................................. 34
-```
 
----
 
-### **3. INTRODUÇÃO**
 
-#### **3.1 Contexto do Projeto**
+
+*3. INTRODUÇÃO**
+
+*3.1 Contexto do Projeto**
 
 O **SGHSS Vida Plus** é um sistema de gestão hospitalar desenvolvido para a instituição VidaPlus, visando modernizar e otimizar os processos de atendimento médico. O sistema foi projetado para atender às necessidades de gestão de pacientes, médicos, consultas e controle de medicamentos.
 
