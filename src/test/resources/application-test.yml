@@ -11,3 +11,5 @@ spring:
 
 server:
   port: 0
+  servlet:
+    context-path: /sghss
