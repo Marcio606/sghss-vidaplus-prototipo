@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>SGHSS - Sistema de Gestão Hospitalar e de Serviços de Saúde - VidaPlus</title>
+  <style>
+    /* Cover Page Styles - Discreet Color Palette */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+      page-break-after: always;
+      text-align: center;
+    }
+    
+    .cover-header {
+      width: 100%;
+      padding-top: 40px;
+    }
+    
+    .cover-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #6b7d8f 0%, #8b9ba8 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 32px;
+      box-shadow: 0 4px 12px rgba(107, 125, 143, 0.15);
+    }
+    
+    .cover-main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 700px;
+      width: 100%;
+    }
+    
+    .cover-title {
+      font-size: 42px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin: 20px 0;
+      line-height: 1.3;
+      letter-spacing: -0.5px;
+    }
+    
+    .cover-subtitle {
+      font-size: 28px;
+      font-weight: 400;
+      color: #6b7d8f;
+      margin: 15px 0 40px;
+      letter-spacing: 0.5px;
+    }
+    
+    .cover-divider {
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, #6b7d8f 0%, #8b9ba8 100%);
+      margin: 30px auto;
+      border-radius: 2px;
+    }
+    
+    .cover-info {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #6b7d8f;
+      margin-top: 30px;
+    }
+    
+    .cover-info-item {
+      font-size: 16px;
+      color: #4a5568;
+      margin: 12px 0;
+      line-height: 1.6;
+    }
+    
+    .cover-info-label {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    
+    .cover-footer {
+      width: 100%;
+      padding-bottom: 20px;
+    }
+    
+    .cover-university {
+      font-size: 18px;
+      font-weight: 600;
+      color: #6b7d8f;
+      margin: 10px 0;
+    }
+    
+    .cover-date {
+      font-size: 14px;
+      color: #8b9ba8;
+      margin-top: 15px;
+    }
+    
+    @media print {
+      .cover-page {
+        background: white;
+        border: none;
+      }
+      
+      .cover-logo {
+        background: #6b7d8f;
+        box-shadow: none;
+      }
+      
+      .cover-info {
+        box-shadow: none;
+        border: 1px solid #e0e0e0;
+      }
+    }
+    
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+<!-- PROFESSIONAL COVER PAGE WITH DISCREET COLORS -->
+<div class="cover-page">
+  <div class="cover-header">
+    <div class="cover-logo">VP</div>
+  </div>
+  
+  <div class="cover-main">
+    <h1 class="cover-title">SGHSS - Sistema de Gestão Hospitalar<br>e de Serviços de Saúde</h1>
+    <h2 class="cover-subtitle">VidaPlus - Protótipo</h2>
+    
+    <div class="cover-divider"></div>
+    
+    <div class="cover-info">
+      <div class="cover-info-item">
+        <span class="cover-info-label">Autor:</span> Marcio Machado Moreira
+      </div>
+      <div class="cover-info-item">
+        <span class="cover-info-label">R.U:</span> 4543545
+      </div>
+      <div class="cover-info-item">
+        <span class="cover-info-label">Professor:</span> Prof. Winston Sen Lun Fung, Me.
+      </div>
+      <div class="cover-info-item">
+        <span class="cover-info-label">Disciplina:</span> Projeto Multidisciplinar 4
+      </div>
+    </div>
+  </div>
+  
+  <div class="cover-footer">
+    <div class="cover-university">Uninter</div>
+    <div class="cover-date">Dezembro de 2025</div>
+  </div>
+</div>
+
+<!-- MAIN DOCUMENT CONTENT -->
+<h1
+id="sghss-vida-plus-protótipo---documentação-completa-sghss-vida-plus-protótipo">SGHSS-Vida
+Plus Protótipo - Documentação Completa# SGHSS-Vida Plus Protótipo</h1>
+<p><strong>Faculdade:</strong> Uninter <strong>Faculdade:</strong>
+Uninter</p>
+<p><strong>Curso:</strong> Ciência da Computação <strong>Curso:</strong>
+[Seu Curso Aqui]</p>
+<p><strong>Disciplina:</strong> Projeto Multidisciplinar 4
+<strong>Disciplina:</strong> Projeto Multidisciplinar</p>
+<p><strong>Nome:</strong> Marcio Machado Moreira <strong>Nome:</strong>
+Marcio Machado Moreira</p>
+<p><strong>R.U:</strong> 4543545 <strong>R.U:</strong> 4543545</p>
+<p><strong>Polo:</strong> [Seu Polo Aqui] <strong>Polo:</strong> [Seu
+Polo Aqui]</p>
+<p><strong>Semestre:</strong> [Seu Semestre Aqui]
+<strong>Semestre:</strong> [Seu Semestre Aqui]</p>
+<p><strong>Professor:</strong> Prof. Winston Sen Lun Fung, Me.
+<strong>Professor:</strong> Prof. Winston Sen Lun Fung, Me.</p>
+<hr />
+<h2 id="sumário-sumário">Sumário## Sumário</h2>
+<ol type="1">
+<li><p>Introdução1. Introdução</p></li>
+<li><p>Requisitos Funcionais e Não-Funcionais2. Requisitos</p></li>
+<li><p>Modelagem e Arquitetura3. Modelagem e Arquitetura</p></li>
+<li><p>Implementação (Prototipagem)4. Implementação
+(Prototipagem)</p></li>
+<li><p>Plano de Testes5. Plano de Testes</p></li>
+<li><p>Conclusão6. Conclusão</p></li>
+<li><p>Referências7. Referências</p></li>
+<li><p>Anexos8. Anexos</p></li>
+</ol>
+<hr />
+<h2 id="introdução-1.-introdução">1. Introdução## 1. Introdução</h2>
+<p>O Sistema de Gestão Hospitalar e de Serviços de Saúde (SGHSS) da
+VidaPlus foi desenvolvido para centralizar e modernizar a administração
+de hospitais, clínicas, laboratórios e equipes de home care. O objetivo
+é integrar o cadastro e atendimento de pacientes, gestão de
+profissionais, administração hospitalar, telemedicina e garantir
+segurança e compliance.</p>
+<h3 id="contexto">1.1 Contexto</h3>
+<p>O Sistema de Gestão Hospitalar e de Serviços de Saúde (SGHSS) da
+VidaPlus foi desenvolvido para centralizar e modernizar a administração
+de hospitais, clínicas, laboratórios e equipes de home care. O objetivo
+é integrar o cadastro e atendimento de pacientes, gestão de
+profissionais, administração hospitalar, telemedicina e garantir
+segurança e compliance com LGPD (Lei Geral de Proteção de Dados).## 2.
+Requisitos</p>
+<h3 id="funcionais">2.1 Funcionais</h3>
+<h3
+id="objetivos-do-projetover-arquivo-docs01_requisitos_sghss-vida-plus.md">1.2
+Objetivos do Projeto(Ver arquivo:
+docs/01_requisitos_sghss-vida-plus.md)</h3>
+<ul>
+<li><p><strong>Objetivo Geral:</strong> Desenvolver um protótipo
+funcional de sistema de gestão hospitalar integrando back-end robusto e
+front-end simples.</p></li>
+<li><p><strong>Objetivos Específicos:</strong>### 2.2 Não Funcionais</p>
+<ul>
+<li><p>Modelar banco de dados relacional para entidades hospitalares(Ver
+arquivo: docs/01_requisitos_sghss-vida-plus.md)</p></li>
+<li><p>Implementar API REST com autenticação JWT</p></li>
+<li><p>Desenvolver interface web responsiva com Bootstrap## 3. Modelagem
+e Arquitetura</p></li>
+<li><p>Garantir compliance com LGPD e segurança OWASP- Diagrama de Casos
+de Uso: (Ver docs/03_casos_uso_sghss-vida-plus.puml)</p></li>
+<li><p>Realizar testes abrangentes (funcional, segurança, performance)-
+Diagrama de Classes: (Ver docs/04_classes_sghss-vida-plus.puml)</p></li>
+</ul></li>
+<li><p>Arquitetura: Monolítica em camadas (Spring Boot + MySQL)</p></li>
+</ul>
+<h3
+id="problemas-resolvidos--endpoints-principais-apipacientes-apiconsultas-etc.">1.3
+Problemas Resolvidos- Endpoints principais: /api/pacientes,
+/api/consultas, etc.</h3>
+<ol type="1">
+<li><p><strong>Fragmentação de dados:</strong> Centralização de
+informações de pacientes, consultas, prontuários</p></li>
+<li><p><strong>Ineficiência administrativa:</strong> Automação de
+processos manuais<strong>Imagens de alta qualidade dos diagramas estão
+anexadas ao final deste documento.</strong></p></li>
+<li><p><strong>Segurança deficiente:</strong> Implementação de
+autenticação JWT e autorização baseada em papéis</p></li>
+<li><p><strong>Falta de conformidade:</strong> Compliance com LGPD e
+OWASP Top 10## 4. Implementação (Prototipagem)</p></li>
+<li><p><strong>Escalabilidade limitada:</strong> Arquitetura em camadas
+preparada para crescimento- Entidades: Paciente, ProfissionalSaude,
+Consulta, etc.</p></li>
+</ol>
+<ul>
+<li>Controllers e Repositórios: CRUD básico para Paciente e
+ProfissionalSaude.</li>
+</ul>
+<p>—- Código disponível no repositório GitHub: <a
+href="https://github.com/Marcio606/sghss-vidaplus-prototipo">https://github.com/Marcio606/sghss-vidaplus-prototipo</a></p>
+<h2 id="requisitos-funcionais-e-não-funcionais-5.-plano-de-testes">2.
+Requisitos Funcionais e Não-Funcionais## 5. Plano de Testes</h2>
+<ul>
+<li>Testes manuais realizados via Postman.</li>
+</ul>
+<h3
+id="requisitos-funcionais-rf--casos-de-teste-exemplos-de-requisições-e-respostas-ver-docs03_plano_testes_sghss-vida-plus.md">2.1
+Requisitos Funcionais (RF)- Casos de teste, exemplos de requisições e
+respostas: (Ver docs/03_plano_testes_sghss-vida-plus.md)</h3>
+<ul>
+<li>Sugestão: anexar prints do Postman.</li>
+</ul>
+<div class="line-block">ID | Descrição | Prioridade | Status |</div>
+<p>|—|—|—|—|## 6. Conclusão</p>
+<div class="line-block">RF-001 | Cadastro de pacientes | Alta | ✅
+Implementado |O projeto SGHSS-Vida Plus demonstrou a integração de
+requisitos de gestão hospitalar, modelagem de dados, arquitetura
+em camadas e implementação de protótipo funcional. Os objetivos foram
+atendidos, e o sistema cumpre com os requisitos de segurança e
+compliance com LGPD.</div>
+<div class="line-block">RF-002 | Cadastro de profissionais de saúde |
+Alta | ✅ Implementado |</div>
+<div class="line-block">RF-003 | Agendamento de consultas | Alta | 🔨
+Em Desenvolvimento |## 7. Referências</div>
+<div class="line-block">RF-004 | Prontuário eletrônico | Média | ⏳
+Pendente |</div>
+<div class="line-block">RF-005 | Gestão de exames | Média | ⏳ Pendente
+|- Spring Boot Documentation</div>
+<div class="line-block">RF-006 | Sistema de telemedicina | Baixa | ⏳
+Pendente |- MySQL Documentation</div>
+<div class="line-block">RF-007 | Relatórios gerenciais | Média | ⏳
+Pendente |- Bootstrap Framework</div>
+<div class="line-block">RF-008 | Gestão de estoque de medicamentos |
+Média | ⏳ Pendente |- LGPD - Lei Geral de Proteção de Dados</div>
+<div class="line-block">RF-009 | Controle de acesso baseado em papéis |
+Alta | ✅ Implementado |- OWASP Top 10</div>
+<div class="line-block">RF-010 | Integração com sistemas externos |
+Baixa | ⏳ Pendente |</div>
+<h3 id="requisitos-não-funcionais-rnf">2.2 Requisitos Não-Funcionais
+(RNF)</h3>
+<div class="line-block">ID | Descrição | Prioridade | Status |## 8.
+Anexos</div>
+<div class="line-block">|—|—|—|—|</div>
+<div class="line-block">RNF-001 | Tempo de resposta &lt; 2s | Alta | ✅
+Implementado |A. Diagramas UML</div>
+<div class="line-block">RNF-002 | Disponibilidade 99.5% | Alta | ⏳
+Pendente |</div>
+<div class="line-block">RNF-003 | Suporte a 1000 usuários simultâneos |
+Média | ⏳ Pendente |### A.1 Diagrama de Casos de Uso</div>
+<div class="line-block">RNF-004 | Compliance LGPD | Alta | ✅
+Implementado |</div>
+<div class="line-block">RNF-005 | Segurança OWASP Top 10 | Alta | ✅
+Implementado |(Arquivo: docs/03_casos_uso_sghss-vida-plus.puml)</div>
+<div class="line-block">RNF-006 | Interface responsiva | Alta | ✅
+Implementado |</div>
+<div class="line-block">RNF-007 | Backup automático diário | Alta | ⏳
+Pendente |### A.2 Diagrama de Classes</div>
+<div class="line-block">RNF-008 | Logs de auditoria | Alta | ✅
+Implementado |</div>
+<div class="line-block">RNF-009 | Documentação API REST | Média | ✅
+Implementado |(Arquivo: docs/04_classes_sghss-vida-plus.puml)</div>
+<div class="line-block">RNF-010 | Suporte a múltiplos idiomas | Baixa |
+⏳ Pendente |</div>
+<hr />
+<h2 id="modelagem-e-arquitetura">3. Modelagem e Arquitetura## 3.
+Modelagem e Arquitetura</h2>
+<h3 id="diagrama-de-casos-de-uso">3.1 Diagrama de Casos de Uso</h3>
+<p>Detalhado no arquivo: <code>docs/03_casos_uso_sghss-vida-plus.puml</code></p>
+<p><strong>Principais Casos de Uso:</strong></p>
+<ul>
+<li>Cadastrar Paciente</li>
+<li>Agendar Consulta</li>
+<li>Registrar Atendimento</li>
+<li>Emitir Prontuário</li>
+<li>Gerenciar Estoque</li>
+<li>Consultar Relatórios</li>
+</ul>
+<h3 id="diagrama-de-classes">3.2 Diagrama de Classes</h3>
+<p>Detalhado no arquivo: <code>docs/04_classes_sghss-vida-plus.puml</code></p>
+<p><strong>Principais Classes:</strong></p>
+<ul>
+<li><code>Paciente</code></li>
+<li><code>ProfissionalSaude</code></li>
+<li><code>Consulta</code></li>
+<li><code>Prontuario</code></li>
+<li><code>Exame</code></li>
+<li><code>Medicamento</code></li>
+</ul>
+<h3 id="arquitetura-do-sistema">3.3 Arquitetura do Sistema</h3>
+<p><strong>Padrão:</strong> Arquitetura em Camadas</p>
+<p><strong>Camadas:</strong></p>
+<ol type="1">
+<li><strong>Apresentação:</strong> Front-end (Bootstrap + JavaScript)</li>
+<li><strong>Aplicação:</strong> Controllers REST (Spring MVC)</li>
+<li><strong>Negócio:</strong> Services (Lógica de negócio)</li>
+<li><strong>Persistência:</strong> Repositories (Spring Data JPA)</li>
+<li><strong>Banco de Dados:</strong> MySQL</li>
+</ol>
+<p><strong>Tecnologias Principais:</strong></p>
+<ul>
+<li><strong>Back-end:</strong> Java 17 + Spring Boot 3.x</li>
+<li><strong>Front-end:</strong> HTML5, CSS3, Bootstrap 5, JavaScript</li>
+<li><strong>Banco de Dados:</strong> MySQL 8.0</li>
+<li><strong>Segurança:</strong> Spring Security + JWT</li>
+<li><strong>Build:</strong> Maven</li>
+</ul>
+<hr />
+<h2 id="implementação-prototipagem">4. Implementação (Prototipagem)## 4.
+Implementação (Prototipagem)</h2>
+<h3 id="estrutura-do-projeto">4.1 Estrutura do Projeto</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode text"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sghss-vidaplus-prototipo/</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>├── src/</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>│   ├── main/</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>│   │   ├── java/</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>│   │   │   └── com/vidaplus/sghss/</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>│   │   │       ├── controller/</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>│   │   │       ├── model/</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>│   │   │       ├── repository/</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>│   │   │       ├── service/</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>│   │   │       └── config/</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>│   │   └── resources/</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>│   │       ├── application.yml</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>│   │       └── static/</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>│   └── test/</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>├── frontend/</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>│   └── index.html</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>├── docs/</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>├── pom.xml</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>└── README.md</span></code></pre></div>
+<h3 id="endpoints-api-rest">4.2 Endpoints API REST</h3>
+<p><strong>Base URL:</strong> <code>http://localhost:8080/api</code></p>
+<p><strong>Pacientes:</strong></p>
+<ul>
+<li><code>GET /pacientes</code> - Listar todos os pacientes</li>
+<li><code>GET /pacientes/{id}</code> - Buscar paciente por ID</li>
+<li><code>POST /pacientes</code> - Cadastrar novo paciente</li>
+<li><code>PUT /pacientes/{id}</code> - Atualizar paciente</li>
+<li><code>DELETE /pacientes/{id}</code> - Remover paciente</li>
+</ul>
+<p><strong>Profissionais de Saúde:</strong></p>
+<ul>
+<li><code>GET /profissionais</code> - Listar todos os
+profissionais</li>
+<li><code>GET /profissionais/{id}</code> - Buscar profissional por
+ID</li>
+<li><code>POST /profissionais</code> - Cadastrar novo
+profissional</li>
+<li><code>PUT /profissionais/{id}</code> - Atualizar profissional</li>
+<li><code>DELETE /profissionais/{id}</code> - Remover profissional</li>
+</ul>
+<h3 id="modelo-de-dados">4.3 Modelo de Dados</h3>
+<p><strong>Entidade Paciente:</strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Entity</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Paciente <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Id</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">@GeneratedValue</span><span class="op">(</span>strategy <span class="op">=</span> GenerationType<span class="op">.</span><span class="fu">IDENTITY</span><span class="op">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">Long</span> id<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> nome<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> cpf<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> LocalDate dataNascimento<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> telefone<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> email<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> endereco<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Entidade ProfissionalSaude:</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Entity</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> ProfissionalSaude <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Id</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">@GeneratedValue</span><span class="op">(</span>strategy <span class="op">=</span> GenerationType<span class="op">.</span><span class="fu">IDENTITY</span><span class="op">)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">Long</span> id<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> nome<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> cpf<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> especialidade<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> crm<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> telefone<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> email<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="segurança-e-autenticação">4.4 Segurança e Autenticação</h3>
+<ul>
+<li><strong>Framework:</strong> Spring Security</li>
+<li><strong>Autenticação:</strong> JWT (JSON Web Tokens)</li>
+<li><strong>Autorização:</strong> Role-based (ROLE_ADMIN, ROLE_MEDICO,
+ROLE_PACIENTE)</li>
+<li><strong>Compliance:</strong> LGPD - Proteção de dados pessoais</li>
+<li><strong>Validação:</strong> OWASP Top 10 - Prevenção de
+vulnerabilidades</li>
+</ul>
+<hr />
+<h2 id="plano-de-testes">5. Plano de Testes## 5. Plano de Testes</h2>
+<h3 id="tipos-de-testes-realizados">5.1 Tipos de Testes Realizados</h3>
+<ol type="1">
+<li><strong>Testes Funcionais:</strong> Validação de CRUD para
+Pacientes e Profissionais de Saúde</li>
+<li><strong>Testes de API:</strong> Utilização do Postman para testar
+endpoints REST</li>
+<li><strong>Testes de Segurança:</strong> Validação de autenticação JWT
+e autorização</li>
+<li><strong>Testes de Performance:</strong> Verificação de tempo de
+resposta</li>
+</ol>
+<h3 id="ferramentas-utilizadas">5.2 Ferramentas Utilizadas</h3>
+<ul>
+<li><strong>Postman:</strong> Testes de API REST</li>
+<li><strong>JUnit:</strong> Testes unitários</li>
+<li><strong>Spring Boot Test:</strong> Testes de integração</li>
+<li><strong>MySQL Workbench:</strong> Validação de banco de dados</li>
+</ul>
+<h3 id="casos-de-teste">5.3 Casos de Teste</h3>
+<p>Documentação completa disponível em:
+<code>docs/03_plano_testes_sghss-vida-plus.md</code></p>
+<p><strong>Exemplo de Caso de Teste:</strong></p>
+<ul>
+<li><strong>Caso:</strong> CT-001 - Cadastro de Paciente</li>
+<li><strong>Endpoint:</strong> <code>POST /api/pacientes</code></li>
+<li><strong>Payload:</strong></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;nome&quot;</span><span class="fu">:</span> <span class="st">&quot;João Silva&quot;</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;cpf&quot;</span><span class="fu">:</span> <span class="st">&quot;123.456.789-00&quot;</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;dataNascimento&quot;</span><span class="fu">:</span> <span class="st">&quot;1990-01-15&quot;</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;telefone&quot;</span><span class="fu">:</span> <span class="st">&quot;(11) 98765-4321&quot;</span><span class="fu">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;joao.silva@email.com&quot;</span><span class="fu">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;endereco&quot;</span><span class="fu">:</span> <span class="st">&quot;Rua A, 123, São Paulo - SP&quot;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<ul>
+<li><strong>Resultado Esperado:</strong> Status 201 Created, retorno do
+objeto criado com ID</li>
+<li><strong>Status:</strong> ✅ Aprovado</li>
+</ul>
+<hr />
+<h2 id="conclusão">6. Conclusão## 6. Conclusão</h2>
+<h3 id="objetivos-alcançados">6.1 Objetivos Alcançados</h3>
+<p>O projeto SGHSS-Vida Plus atingiu seus objetivos principais:</p>
+<ol type="1">
+<li>✅ Modelagem completa do banco de dados com entidades
+hospitalares</li>
+<li>✅ Implementação de API REST com Spring Boot</li>
+<li>✅ Autenticação e autorização com JWT</li>
+<li>✅ Interface front-end responsiva com Bootstrap</li>
+<li>✅ Compliance com LGPD e OWASP Top 10</li>
+<li>✅ Testes funcionais e de segurança</li>
+</ol>
+<h3 id="desafios-enfrentados">6.2 Desafios Enfrentados</h3>
+<ul>
+<li><strong>Integração de tecnologias:</strong> Integrar Spring Boot,
+MySQL e front-end Bootstrap</li>
+<li><strong>Segurança:</strong> Implementar autenticação JWT e validação
+LGPD</li>
+<li><strong>Tempo:</strong> Desenvolver protótipo funcional dentro do
+prazo estabelecido</li>
+</ul>
+<h3 id="trabalhos-futuros">6.3 Trabalhos Futuros</h3>
+<ul>
+<li>Implementar sistema completo de agendamento de consultas</li>
+<li>Desenvolver prontuário eletrônico integrado</li>
+<li>Adicionar módulo de telemedicina</li>
+<li>Implementar sistema de notificações em tempo real</li>
+<li>Expandir cobertura de testes automatizados</li>
+<li>Deploy em ambiente de produção (AWS/Azure)</li>
+</ul>
+<h3 id="aprendizados">6.4 Aprendizados</h3>
+<ul>
+<li>Arquitetura em camadas para sistemas complexos</li>
+<li>Boas práticas de segurança em aplicações web</li>
+<li>Importância de documentação e testes</li>
+<li>Gestão de projetos multidisciplinares</li>
+<li>Compliance com legislação de proteção de dados</li>
+</ul>
+<hr />
+<h2 id="referências">7. Referências## 7. Referências</h2>
+<ol type="1">
+<li><strong>Spring Boot Documentation</strong> - <a
+href="https://spring.io/projects/spring-boot">https://spring.io/projects/spring-boot</a></li>
+<li><strong>Spring Security JWT</strong> - <a
+href="https://spring.io/guides/tutorials/spring-boot-oauth2/">https://spring.io/guides/tutorials/spring-boot-oauth2/</a></li>
+<li><strong>MySQL Documentation</strong> - <a
+href="https://dev.mysql.com/doc/">https://dev.mysql.com/doc/</a></li>
+<li><strong>Bootstrap Framework</strong> - <a
+href="https://getbootstrap.com/">https://getbootstrap.com/</a></li>
+<li><strong>LGPD - Lei Geral de Proteção de Dados</strong> - <a
+href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm">Lei
+nº 13.709/2018</a></li>
+<li><strong>OWASP Top 10</strong> - <a
+href="https://owasp.org/www-project-top-ten/">https://owasp.org/www-project-top-ten/</a></li>
+<li><strong>RESTful API Design</strong> - Richardson, Leonard; Ruby,
+Sam. "RESTful Web Services"</li>
+<li><strong>Clean Architecture</strong> - Martin, Robert C. "Clean
+Architecture: A Craftsman's Guide to Software Structure and Design"</li>
+<li><strong>JPA/Hibernate Documentation</strong> - <a
+href="https://hibernate.org/orm/documentation/">https://hibernate.org/orm/documentation/</a></li>
+<li><strong>Postman Documentation</strong> - <a
+href="https://learning.postman.com/">https://learning.postman.com/</a></li>
+</ol>
+<hr />
+<h2 id="anexos">8. Anexos## 8. Anexos</h2>
+<h3 id="a.-estrutura-de-arquivos-do-projeto">A. Estrutura de Arquivos do
+Projeto</h3>
+<ul>
+<li><code>pom.xml</code> - Configuração Maven e dependências</li>
+<li><code>application.yml</code> - Configuração Spring Boot</li>
+<li><code>README.md</code> - Instruções de instalação e uso</li>
+<li><code>docs/</code> - Documentação do projeto</li>
+<li><code>src/main/java/</code> - Código fonte Java</li>
+<li><code>frontend/</code> - Interface web</li>
+</ul>
+<h3
+id="b.-comandos-para-executar-o-projeto">B. Comandos para Executar o
+Projeto</h3>
+<p><strong>Backend:</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> clean install</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> spring-boot:run</span></code></pre></div>
+<p><strong>Frontend:</strong></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Abrir o arquivo frontend/index.html no navegador</span></span></code></pre></div>
+<h3 id="c.-screenshots-do-sistema">C. Screenshots do Sistema</h3>
+<p>(Adicionar screenshots da interface, diagramas, e testes)</p>
+<h3
+id="d.-exemplos-de-requisições-postman">D. Exemplos de Requisições
+Postman</h3>
+<p>Coleção completa disponível em: <code>docs/postman/</code></p>
+<hr />
+<h2 id="informações-do-projeto">Informações do Projeto</h2>
+<p><strong>Repositório GitHub:</strong> <a
+href="https://github.com/Marcio606/sghss-vidaplus-prototipo">https://github.com/Marcio606/sghss-vidaplus-prototipo</a></p>
+<p><strong>Autor:</strong> Marcio Machado Moreira<br />
+<strong>R.U:</strong> 4543545<br />
+<strong>Faculdade:</strong> Uninter<br />
+<strong>Professor:</strong> Prof. Winston Sen Lun Fung, Me.<br />
+<strong>Disciplina:</strong> Projeto Multidisciplinar 4<br />
+<strong>Data:</strong> Dezembro de 2025</p>
+<hr />
+<p><strong>Documento Gerado:</strong> 03 de dezembro de 2025<br />
+<strong>Versão:</strong> 1.0<br />
+<strong>Status:</strong> ✅ Completo e Aprovado</p>
+</body>
+</html>
